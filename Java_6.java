@@ -21,11 +21,12 @@ class gcdlcm {
 			return n;
 		} else {
 			m%=n;
-			while(n!=0) {		//辗转相除法
-			int r=m%n;
-				m=n;
-				n=r;}
-			return m;
+			// while(n!=0) {		//辗转相除法
+			// int r=m%n;
+			// 	m=n;
+			// 	n=r;}
+			// return m;
+			return gcd(m,n);  
 			// 這裡也可以寫成gcd(n,m)，就省掉了前面的判斷了，會快一點
 		}
 	}
