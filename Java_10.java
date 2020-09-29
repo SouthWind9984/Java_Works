@@ -27,13 +27,23 @@ public class Java_10 {
 				min=i;
 			}
 		}
-		arr[max]=arr[0]+arr[max];		//最大的换到首位
-		arr[0]=arr[max]-arr[0];
-		arr[max]=arr[max]-arr[0];
+		int tmp = arr[0];
+		arr[0]=arr[max];
+		arr[max]=tmp;
 		
-		arr[9]=arr[9]-arr[min];			//最小的换到最后
-		arr[min]=arr[9]+arr[min];
-		arr[9]=arr[min]-arr[9];
+		/*
+		 * arr[max]=arr[0]+arr[max]; //最大的换到首位 arr[0]=arr[max]-arr[0];
+		 * arr[max]=arr[max]-arr[0];
+		 */
+		tmp = arr[9];
+		arr[9]=arr[min];
+		arr[min]=tmp;
+		
+		
+		/*
+		 * arr[9]=arr[9]-arr[min]; //最小的换到最后 arr[min]=arr[9]+arr[min];
+		 * arr[9]=arr[min]-arr[9];
+		 */
 
 		for(int t:arr)
 			System.out.print(t+"  ");
