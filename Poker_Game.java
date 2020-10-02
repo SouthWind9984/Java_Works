@@ -20,7 +20,7 @@ public class Game {
 	 * 
 	 * 创建一个数组存放53张扑克牌
 	 * 电脑随机抽取一个数，用户无法抽到这张牌
-	 * @return
+	 * 
 	 */
 	public static void main(String[] args) {
 		// TODO 自动生成的方法存根
