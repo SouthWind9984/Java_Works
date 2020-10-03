@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Game {
 	/**
-	 * 设计一个扑克牌游戏，52张扑克牌，
+	 * 一个扑克牌游戏，52张扑克牌，
 	 * 让计算机随机抽取 一张，用户输入一个数，
 	 * 即要抽取的第几张牌
 	（因为计算机先抽，所以用户一定不能抽计算机抽过牌），
@@ -20,14 +20,24 @@ public class Game {
 	 * 
 	 * 创建一个数组存放53张扑克牌
 	 * 电脑随机抽取一个数，用户无法抽到这张牌
-	 * 
+	 * @return
 	 */
 	public static void main(String[] args) {
 		// TODO 自动生成的方法存根
 		Scanner in = new Scanner(System.in);
+		gameOver:
+		while(true) //循环可多玩几次
+		{
+		System.out.println("——————————————————————————————————————————————————————");
 		System.out.println("\t\t欢迎来到扑克牌大战");
-		System.out.println("游戏规则：A最大，依次2-10,J,Q,K.若数值相同比较花色，依次是黑红梅方，\n\t\t~~回车开始游戏");
+		System.out.println("游戏规则：A最大，依次2-10,J,Q,K.若数值相同比较花色，依次是黑红梅方，\n\t~~~回车开始游戏，输入\"投降\"结束游戏");
+		System.out.println("——————————————————————————————————————————————————————");
 		String s = in.nextLine();
+		
+		if(s.equals("投降")) {
+			System.out.println("由于你已经投降，游戏结束");
+			break gameOver;
+		}
 		//获取电脑抽到的牌面
 		int c_size =computer();
 //		System.out.println("电脑抽到的是"+mark(c_size));
@@ -37,26 +47,28 @@ public class Game {
 		System.out.println();
 		//获取用户抽到的牌面
 		int u_size = User();
+	
 		//判断
 		if(c_size>u_size) {
 			System.out.print("**********************\n");
-			System.out.println("            哈哈哈~ 你好菜");
+			System.out.println("\t哈哈哈~ 你好菜");
 			System.out.println("我的“"+mark(c_size)+"”战胜“你的"+mark(u_size)+"”");
 			System.out.print("**********************\n");
 		}
 		else if(c_size<u_size){
-			System.out.print("**************************\n");
-			System.out.println("  啊~ 碰见高手了");
+			System.out.print("**********************\n");
+			System.out.println("\t啊~ 碰见高手了");
 			System.out.println("你的“"+mark(u_size)+"”战胜我的“"+mark(c_size)+"”");
-			System.out.print("**************************\n");
+			System.out.print("**********************\n");
 		}
 		else {
-			System.out.print("**************************\n");
-			System.out.println("  少年，算你运气好");
+			System.out.print("**********************\n");
+			System.out.println("\t少年，算你运气好");
 			System.out.println("你的“"+mark(u_size)+"”与我的“"+mark(c_size)+"”打成平手");
-			System.out.print("**************************\n");
+			System.out.print("**********************\n");
 		}
 	}
+}
 	
 	//创建一个数组存放52张扑克牌
 	public static int[] playCardArr() {
@@ -89,12 +101,16 @@ public class Game {
 	public static int[] randomArr() {
 		Random ran =new Random();
 		int numberArr[] = new int [52];
-		int number =0;
-		for(int i=1;i<numberArr.length;i++) {
+		int number=0;
+		for(int i=0;i<numberArr.length;i++) {
 			boolean f =true;
-				number= ran.nextInt(52);
+				number= ran.nextInt(52)+1;
 				for(int t:numberArr)
 				{
+					if(number==0)
+					{
+						break;
+					}
 					if(t==number) {
 						f=false;
 						break;
@@ -107,6 +123,13 @@ public class Game {
 			else 
 				i--;
 		}
+		for(int i=0;i<numberArr.length;i++) //为防止数组下标溢出，将52归0
+		{
+			if(numberArr[i]==52) {
+				numberArr[i]=0;
+			}
+		}
+
 		return numberArr;
 	}
 	
@@ -140,6 +163,10 @@ public class Game {
 		}
 		System.out.println("请确认你要抽第几张牌(还剩51张牌)：");
 		int n =in.nextInt();
+		while(n<1||n>51) {
+			System.out.println("超出范围(1-51)，请重新输入：");
+			n=in.nextInt();
+		}
 		int u_size = array[n-1];
 		return u_size;
 	}
@@ -174,5 +201,12 @@ public class Game {
 		String mark=huase+vale;
 		return mark;
 	}
+//	public static boolean gameOver(int n) {
+//		boolean f = true;
+//		if (n==-1) {
+//		 f=false;
+//		}
+//		return f;
+//	}
 	
 }
