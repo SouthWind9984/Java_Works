@@ -1,5 +1,3 @@
-package java_03;
-
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,13 +11,13 @@ public class Game {
 	输出结果（输出牌面值 黑桃A、黑桃J、黑桃Q、黑桃K）。
 	 * 
 	 * 
-	 * 思路：
-	 * 数组存放的53张牌是随机的还是有序的？？
-	 * 
-	 * 随机的更有效
-	 * 
-	 * 创建一个数组存放53张扑克牌
-	 * 电脑随机抽取一个数，用户无法抽到这张牌
+	 * 0思路：
+	 * 1.先生成一个0-51的随机数组
+	 * 2.将52张牌数值存到一个由随机数组成的数组中
+	 * 3.电脑从数组中随机抽取一张
+	 * 4.用户从剩下的51张牌抽取一张
+	 * 5.将牌面数值拆解，生成花色+数值的牌面
+	 * 6.比较电脑和用户两张牌的大小
 	 * @return
 	 */
 	public static void main(String[] args) {
@@ -40,9 +38,8 @@ public class Game {
 		}
 		//获取电脑抽到的牌面
 		int c_size =computer();
-//		System.out.println("电脑抽到的是"+mark(c_size));
 		System.out.println("--------------------");
-		System.out.println("我已经抽取一张牌，轮到你了");
+		System.out.println("我已抽取到一张“"+mark(c_size)+"”，轮到你了");
 		System.out.println("--------------------");
 		System.out.println();
 		//获取用户抽到的牌面
@@ -69,7 +66,6 @@ public class Game {
 		}
 	}
 }
-	
 	//创建一个数组存放52张扑克牌
 	public static int[] playCardArr() {
 		/*
@@ -92,7 +88,6 @@ public class Game {
 				k++;
 			}
 		}
-//		System.out.println(k);
 		return arr;   //得到一个随机存放扑克牌的数组
 	}
 	
@@ -201,12 +196,4 @@ public class Game {
 		String mark=huase+vale;
 		return mark;
 	}
-//	public static boolean gameOver(int n) {
-//		boolean f = true;
-//		if (n==-1) {
-//		 f=false;
-//		}
-//		return f;
-//	}
-	
 }
