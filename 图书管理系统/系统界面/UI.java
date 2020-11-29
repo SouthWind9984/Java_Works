@@ -1,4 +1,4 @@
-package 管理系统界面;
+package 系统界面;
 
 public class UI {
 	
